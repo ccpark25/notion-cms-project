@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowRight, Shield, Zap, Code2, Layers } from "lucide-react";
+import { ArrowRight, Shield, Zap, Code2, Layers, BookOpen } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -68,6 +68,12 @@ export default function LandingPage() {
               </Link>
             </Button>
             <Button size="lg" variant="outline" asChild>
+              <Link href="/blog">
+                <BookOpen className="mr-2 h-4 w-4" />
+                블로그 보기
+              </Link>
+            </Button>
+            <Button size="lg" variant="ghost" asChild>
               <Link href="/login">로그인하기</Link>
             </Button>
           </div>

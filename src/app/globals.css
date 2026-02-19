@@ -139,3 +139,31 @@ body {
   background-color: var(--background);
   color: var(--foreground);
 }
+
+/* shiki 코드 블록 다크모드 지원 */
+/* 라이트 모드: github-light 테마 표시, github-dark 숨기기 */
+.shiki.github-dark {
+  display: none;
+}
+
+/* 다크 모드: github-dark 테마 표시, github-light 숨기기 */
+.dark .shiki.github-light {
+  display: none;
+}
+
+.dark .shiki.github-dark {
+  display: block;
+}
+
+/* 코드 블록 공통 스타일 */
+.shiki {
+  overflow-x: auto;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  font-size: 0.875rem;
+  line-height: 1.7;
+}
+
+.shiki code {
+  counter-reset: line;
+}

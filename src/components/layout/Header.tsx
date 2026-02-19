@@ -1,8 +1,9 @@
 "use client";
 
 import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { LogOut, Settings, Menu, LayoutDashboard } from "lucide-react";
+import { useRouter, usePathname } from "next/navigation";
+import { LogOut, Settings, Menu, LayoutDashboard, BookOpen } from "lucide-react";
+import { cn } from "@/lib/utils";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import {
@@ -24,6 +25,7 @@ interface HeaderProps {
 
 export function Header({ showSidebarToggle = false }: HeaderProps) {
   const router = useRouter();
+  const pathname = usePathname();
   const { user, isAuthenticated, logout } = useAuth();
   const { toggleSidebar } = useUIStore();
 
@@ -49,15 +51,31 @@ export function Header({ showSidebarToggle = false }: HeaderProps) {
         )}
 
         {/* 로고 */}
-        <Link href="/" className="flex items-center gap-2 font-bold text-lg mr-auto">
+        <Link href="/" className="flex items-center gap-2 font-bold text-lg">
           <div className="h-8 w-8 rounded-lg bg-primary flex items-center justify-center">
             <span className="text-primary-foreground text-sm font-bold">NS</span>
           </div>
           <span className="hidden sm:inline">NextStarter</span>
         </Link>
 
-        {/* 우측 액션 영역 */}
-        <div className="flex items-center gap-2">
+        {/* 블로그 네비게이션 링크 */}
+        <nav className="ml-4 flex items-center gap-1">
+          <Link
+            href="/blog"
+            className={cn(
+              "flex items-center gap-1.5 px-3 py-1.5 rounded-md text-sm font-medium transition-colors",
+              pathname?.startsWith("/blog")
+                ? "bg-primary/10 text-primary"
+                : "text-muted-foreground hover:text-foreground hover:bg-muted"
+            )}
+          >
+            <BookOpen className="h-4 w-4" />
+            <span className="hidden sm:inline">블로그</span>
+          </Link>
+        </nav>
+
+        {/* 우측 액션 영역 (ml-auto로 우측 정렬) */}
+        <div className="ml-auto flex items-center gap-2">
           <ThemeToggle />
 
           {isAuthenticated && user ? (

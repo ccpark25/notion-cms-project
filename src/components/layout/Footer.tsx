@@ -25,6 +25,9 @@ export function Footer() {
             <Link href="/" className="hover:text-foreground transition-colors">
               홈
             </Link>
+            <Link href="/blog" className="hover:text-foreground transition-colors">
+              블로그
+            </Link>
             <Link href="/login" className="hover:text-foreground transition-colors">
               로그인
             </Link>
